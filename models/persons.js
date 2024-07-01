@@ -16,6 +16,12 @@ const personScehema = new mongoose.Schema({
     number: {
         type: String,
         minLength: 10,
+        validate: {
+            validator: function (n) {
+                return /^\{2,3}-\d+$/.test(n)
+            },
+            message: props => `${props.value} is not a valid phone number!`
+        },
         required: true,
     },
 })
